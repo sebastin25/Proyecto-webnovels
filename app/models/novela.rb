@@ -1,0 +1,2 @@
+class Novela < ApplicationRecord
+end
