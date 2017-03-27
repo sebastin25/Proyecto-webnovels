@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numero_capitulo: 1
+  nombre_capitulo: MyString
+  link: MyString
+  novela: one
+
+two:
+  numero_capitulo: 1
+  nombre_capitulo: MyString
+  link: MyString
+  novela: two
