@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users , except: [:update, :destroy]
   resources :novelas do
     resources :capitulos
   end
