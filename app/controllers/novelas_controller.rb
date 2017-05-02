@@ -5,6 +5,9 @@ class NovelasController < ApplicationController
   def index
     @novelas = Novela.all
 
+    if search = params[:search]
+      @novelas = Novela.where(name: search)
+    end
     render json: @novelas
   end
 
