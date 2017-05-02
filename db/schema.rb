@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327021151) do
+ActiveRecord::Schema.define(version: 20170502024806) do
 
   create_table "capitulos", force: :cascade do |t|
     t.integer  "numero_capitulo"
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(version: 20170327021151) do
     t.string   "email"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "usuario_novelas", force: :cascade do |t|
+    t.integer  "novela_id"
+    t.integer  "user_id"
+    t.integer  "capitulo_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["capitulo_id"], name: "index_usuario_novelas_on_capitulo_id"
+    t.index ["novela_id"], name: "index_usuario_novelas_on_novela_id"
+    t.index ["user_id"], name: "index_usuario_novelas_on_user_id"
+    t.index [nil, nil], name: "index_usuario_novelas_on_user_and_novela", unique: true
   end
 
 end
