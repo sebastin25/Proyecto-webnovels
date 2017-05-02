@@ -7,6 +7,6 @@ class CreateUsuarioNovelas < ActiveRecord::Migration[5.0]
       t.timestamps
 
     end
-      add_index :usuario_novelas, [:user, :novela], unique: true
+      add_index :usuario_novelas, [:user_id, :novela_id], unique: true
   end
 end

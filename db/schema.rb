@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20170502024806) do
     t.datetime "updated_at",  null: false
     t.index ["capitulo_id"], name: "index_usuario_novelas_on_capitulo_id"
     t.index ["novela_id"], name: "index_usuario_novelas_on_novela_id"
+    t.index ["user_id", "novela_id"], name: "index_usuario_novelas_on_user_id_and_novela_id", unique: true
     t.index ["user_id"], name: "index_usuario_novelas_on_user_id"
-    t.index [nil, nil], name: "index_usuario_novelas_on_user_and_novela", unique: true
   end
 
 end

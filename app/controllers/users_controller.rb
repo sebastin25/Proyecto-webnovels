@@ -1,38 +1,44 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+    before_action :set_user, only: [:show]
+    before_action :authenticate_user, only: [:index, :show]
 
-  # GET /users
-  def index
-    @users = User.all
+    # GET /users
+    def index
+        @users = User.all
 
-    render json: @users
-  end
+        if username = params[:username]
+            @users = User.where(username: username) 
+        end
 
-  # GET /users/1
-  def show
-    render json: @user
-  end
 
-  # POST /users
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
+        render json: @users, :except=>  [:password, :password_digest, :created_at, :updated_at]
     end
-  end
+
+    # GET /users/1
+    def show
+        render json: @user
+    end
+
+    # POST /users
+    def create
+        @user = User.new(user_params)
+
+        if @user.save
+            render json: @user, status: :created, location: @user
+        else
+            render json: @user.errors, status: :unprocessable_entity
+        end
+    end
 
 
-  private
+    private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+        @user = User.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:username, :password, :email)
+        params.require(:user).permit(:username, :password, :email)
     end
 end
