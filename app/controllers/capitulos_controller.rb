@@ -1,5 +1,5 @@
 class CapitulosController < ApplicationController
-  before_action :set_capitulo, only: [:show, :update, :destroy]
+  before_action :set_capitulo, only: [:update, :destroy]
 
   # GET /novelas/:novela_id/capitulos
   def index
@@ -10,6 +10,7 @@ class CapitulosController < ApplicationController
 
   # GET /novelas/:novela_id/capitulos/1
   def show
+    @capitulo = Capitulo.find_by_sql(["SELECT * FROM capitulos WHERE novela_id = ? and id = ?", params[:novela_id], params[:id]])
     render json: @capitulo
   end
 
@@ -43,7 +44,7 @@ class CapitulosController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_capitulo
     novela = Novela.find(params[:novela_id])
-    @capitulo = Capitulo.where(novela_id: novela).where(numero_capitulo:
+    @capitulo = Capitulo.where(novela_id: novela).where(id:
                                  params[:id])
   end
 

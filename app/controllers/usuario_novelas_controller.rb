@@ -1,5 +1,5 @@
 class UsuarioNovelasController < ApplicationController
-  before_action :set_usuario_novela, only: [:show, :update,:destroy]
+  before_action :set_usuario_novela, only: [:show]
   before_action :authenticate_user
 
   # GET /usuario_novelas
@@ -36,6 +36,9 @@ class UsuarioNovelasController < ApplicationController
 
   # DELETE /usuario_novelas/1
   def destroy
+    #@usuario_novela = UsuarioNovela.find_by_sql(["SELECT * FROM usuario_novelas WHERE user_id = ? and id = ?", params[:user_id], :id]) 
+      
+    @usuario_novela = UsuarioNovela.find(params[:id])  
     @usuario_novela.destroy
   end
 

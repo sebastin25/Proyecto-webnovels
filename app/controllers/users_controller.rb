@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show]
-    before_action :authenticate_user, only: [:index, :show]
+    before_action :authenticate_user, only: [:show]
 
     # GET /users
     def index
         @users = User.all
 
-        if username = params[:username]
-            @users = User.where(username: username) 
+        if email = params[:email]
+            @users = User.where(email: email) 
         end
 
 
